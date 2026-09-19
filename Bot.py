@@ -9,7 +9,7 @@ from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQu
 from aiogram.types import Message
 from aiogram import Bot, Dispatcher
 from aiogram.filters import CommandStart
-
+from aiohttp import web
 from dotenv import load_dotenv
 from aiogram.client.default import DefaultBotProperties
 from aiogram.fsm.state import State, StatesGroup
@@ -198,9 +198,25 @@ async def back_to_menu(callback: CallbackQuery):
 
 
 
-async def main():
-    await dp.start_polling(bot)
 
+
+async def ping(request):
+    return web.Response(text="Сервер работает")
+
+
+async def start_fake_server():
+    app = web.Application()
+    app.router.add_get('/', ping)
+    runner = web.AppRunner(app)
+    await runner.setup()
+
+    port = int(os.getenv("PORT", 8080))
+    site = web.TCPSite(runner, '0.0.0.0', port)
+    await site.start()
+
+async def main():
+    asyncio.create_task(start_fake_server())
+    await dp.start_polling(bot)
     pass
 
 
