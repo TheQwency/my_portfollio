@@ -30,7 +30,7 @@ class OrderState(StatesGroup):
 
 text = """👋 Привет, <b>{name}</b>! 
 
-Я <b>Руслан</b> — Python-разработчик. 
+Я <b>Алина</b> — Python-разработчик. 
 Помогаю бизнесу автоматизировать рутину с помощью 🤖 Telegram-ботов и 🕷 сбора данных.
 
 👇 <i>Выберите нужный раздел ниже:</i>"""
@@ -61,7 +61,7 @@ async def start_message(message: Message):
     await message.answer(
 f"""👋 Привет, <b>{message.from_user.first_name}</b>! 
 
-    Я <b>Руслан</b> — Python-разработчик. 
+    Я <b>Алина</b> — Python-разработчик. 
     
 Помогаю бизнесу автоматизировать рутину с помощью 🤖 Telegram-ботов и 🕷 сбора данных.
 
@@ -69,7 +69,7 @@ f"""👋 Привет, <b>{message.from_user.first_name}</b>!
 
 @dp.callback_query(F.data=="my_profile")
 async def my_profile(callback: CallbackQuery):
-    await callback.message.edit_text("""Меня зовут Руслан и я Python-разработчик.
+    await callback.message.edit_text("""Меня зовут Алина и я Python-разработчик.
                         Мой основной стек:
                                                   
 <b>🤖 Telegram боты</b>:
@@ -190,7 +190,7 @@ async def back_to_menu(callback: CallbackQuery):
     await callback.message.edit_text(
         f"""👋 Привет, <b>{callback.from_user.first_name}</b>! 
 
-    Я <b>Руслан</b> — Python-разработчик. 
+    Я <b>Алина</b> — Python-разработчик. 
     
 Помогаю бизнесу автоматизировать рутину с помощью 🤖 Telegram-ботов и 🕷 сбора данных.
 
